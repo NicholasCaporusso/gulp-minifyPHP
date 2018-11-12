@@ -14,7 +14,7 @@ module.exports = function() {
     }
     if(file.isBuffer()){
       var data=file.contents.toString(enc);
-      data=data.replace(/(\/\/|#)[^\r\n]+/g,'').replace(/\/\*[^\*]+\*\//gm,'');
+      data=data.replace(/\r?\n\t*(\/\/|#)[^\r\n]+/g,'').replace(/\r?\n\t*\/\*[^\*]+\*\//gm,'');
       data=data.replace(/ +/g,' ').replace(/ +\r?\n/g,'\n').replace(/\t+/g,'').replace(/(\r?\n)+/g,'\r\n');
 	  data=data.replace(/;\r\n/g,';').replace(/\{\r\n/g,'{').replace(/\}\r\n/g,'}');
       file.contents=Buffer.alloc(data.length);
